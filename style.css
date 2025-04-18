@@ -1,0 +1,200 @@
+/* Base styles */
+:root {
+    --primary: #4F46E5;
+    --primary-dark: #3730A3;
+    --secondary: #06B6D4;
+    --accent: #8B5CF6;
+    --light: #F9FAFB;
+    --dark: #111827;
+    --gray-light: #F3F4F6;
+    --gray-dark: #1F2937;
+    --text-light: #6B7280;
+    --text-dark: #374151;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom animations */
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 15s linear infinite;
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  
+  /* Card hover effects */
+  .service-card {
+    transition: all 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  /* Project card hover effects */
+  .project-card {
+    transition: all 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  /* Team member card effects */
+  .team-card {
+    transition: all 0.3s ease;
+  }
+  
+  .team-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .social-icon {
+    transition: all 0.2s ease;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Glass effect for dark mode */
+  .glass-dark {
+    background: rgba(31, 41, 55, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Glass effect for light mode */
+  .glass-light {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(31, 41, 55, 0.05);
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  .dark ::-webkit-scrollbar-track {
+    background: #374151;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    background: #6B7280;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+  }
+  
+  /* Custom underline animation for navigation */
+  .nav-link {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+  
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  /* Contact form styling */
+  .input-field {
+    transition: all 0.3s ease;
+  }
+  
+  .input-field:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .animate-float {
+      animation: none;
+    }
+    
+    .service-card:hover,
+    .project-card:hover,
+    .team-card:hover {
+      transform: none;
+    }
+  }
+  
