@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadComponent('services', 'services.html');
     loadComponent('projects', 'projects.html');
     loadComponent('team', 'team.html');
-    loadComponent('testimonials', 'testimonials.html');
+    // loadComponent('testimonials', 'testimonials.html');
     loadComponent('contact', 'contact.html');
     loadComponent('footer', 'footer.html');
     
@@ -95,32 +95,56 @@ document.addEventListener('DOMContentLoaded', function() {
   // Form submission handler
   function handleContactSubmit(event) {
     event.preventDefault();
-    
+  
+    const form = event.target;
+  
     // Get form data
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    
-    // Here you would typically send this data to a backend
-    console.log('Form submitted:', { name, email, message });
-    
-    // Show success message
-    const form = document.getElementById('contact-form');
-    const successMessage = document.getElementById('success-message');
-    
-    form.classList.add('hidden');
-    successMessage.classList.remove('hidden');
-    
-    // Reset form
-    event.target.reset();
-    
-    // Hide success message after 5 seconds and show form again
-    setTimeout(() => {
-      successMessage.classList.add('hidden');
-      form.classList.remove('hidden');
-    }, 5000);
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject')?.value.trim() || 'Contact Form Submission';
+    const message = document.getElementById('message').value.trim();
+  
+    // Basic validation
+    if (!name || !email || !message) {
+      alert('Please fill in all required fields');
+      return;
+    }
+  
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+  
+    try {
+      // Construct the mailto URL with pre-filled fields
+      const emailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+      const mailtoUrl = `mailto:supun9402@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+  
+      // Open email client
+      window.location.href = mailtoUrl;
+  
+      // Show success message
+      const successMessage = document.getElementById('success-message');
+      form.classList.add('hidden');
+      successMessage.classList.remove('hidden');
+  
+      // Reset form
+      form.reset();
+  
+      // Hide success message after 5 seconds and show form again
+      setTimeout(() => {
+        successMessage.classList.add('hidden');
+        form.classList.remove('hidden');
+      }, 5000);
+    } catch (error) {
+      console.error('Error opening email client:', error);
+      alert('There was an error opening your email client. Please try again or contact us directly at info@ramsytec.com');
+    }
   }
   
+
   // Mobile menu toggle
   function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
